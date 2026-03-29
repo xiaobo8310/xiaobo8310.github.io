@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>文章详情-兔BUG</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body class="page-fade">
+
+<div class="container">
+  <div style="margin:20px 0;">
+    <a href="articles.html" style="color:var(--accent);">← 返回文章列表</a>
+  </div>
+  <div class="markdown-view" id="mdContent">加载中...</div>
+</div>
+
+<script src="assets/js/core.js"></script>
+<script>
+// 强制写死测试路径（保证一定能读到）
+const testMdPath = "content/articles/2026/03/note1.md";
+
+fetch(testMdPath)
+  .then(res => {
+    if (!res.ok) throw new Error("文件不存在或路径错误");
+    return res.text();
+  })
+  .then(raw => {
+    const html = marked.parse(raw);
+    document.getElementById("mdContent").innerHTML = html;
+  })
+  .catch(err => {
+    document.getElementById("mdContent").innerHTML = `
+      <p>读取失败原因：${err.message}</p>
+      <p>当前尝试读取：${testMdPath}</p>
+      <p>请检查文件夹路径是否正确</p>
+    `;
+  });
+</script>
+</body>
+</script>
+</body>
+</html>

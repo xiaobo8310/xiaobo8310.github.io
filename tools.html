@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>工具箱-兔BUG</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+.tool-container {
+  padding: 30px 0;
+}
+.tool-title {
+  text-align: center;
+  margin-bottom: 26px;
+}
+
+/* 一行最多 3 个，适中宽度，不会太大 */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  max-width: 800px;
+  margin: 0 auto;
+  gap: 18px;
+}
+
+/* 适中大小卡片 */
+.tool-card {
+  aspect-ratio: 1 / 0.9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: var(--card);
+  border-radius: 14px;
+  text-decoration: none;
+  transition: 0.25s ease;
+  box-shadow: var(--shadow);
+}
+.tool-card:hover {
+  transform: translateY(-3px);
+}
+
+/* 图标大小适中 */
+.tool-icon {
+  font-size: 34px;
+  margin-bottom: 10px;
+}
+
+.tool-name {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+.tool-desc {
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* 未完待续 */
+.card-coming {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+</style>
+</head>
+
+<body class="page-fade">
+<div class="container tool-container">
+  <div class="tool-title">
+    <h2>🧰 工具箱</h2>
+  </div>
+
+  <!-- ======================== -->
+  <!-- 工具卡片网格 -->
+  <!-- ======================== -->
+  <div class="tools-grid">
+
+    <!-- 图片处理 -->
+    <a href="tool-image.html" class="tool-card fade-in">
+      <div class="tool-icon">🖼️</div>
+      <div class="tool-name">图片处理</div>
+      <div class="tool-desc">转换｜压缩｜导出ICO</div>
+    </a>
+
+    <!-- 进制转换 -->
+    <a href="tool-convert.html" class="tool-card fade-in">
+      <div class="tool-icon">🔢</div>
+      <div class="tool-name">进制转换</div>
+      <div class="tool-desc">2/8/10/16进制互转</div>
+    </a>
+
+    <!-- 文本处理 -->
+    <a href="tool-text.html" class="tool-card fade-in">
+      <div class="tool-icon">📝</div>
+      <div class="tool-name">文本处理</div>
+      <div class="tool-desc">统计｜大小写｜去空格</div>
+    </a>
+
+    <!-- 颜色拾取 -->
+    <a href="tool-color.html" class="tool-card fade-in">
+      <div class="tool-icon">🎨</div>
+      <div class="tool-name">颜色拾取</div>
+      <div class="tool-desc">取色｜复制色值</div>
+    </a>
+
+    <!-- 配色生成器 -->
+    <a href="tool-palette.html" class="tool-card fade-in">
+      <div class="tool-icon">🌈</div>
+      <div class="tool-name">配色生成器</div>
+      <div class="tool-desc">专业配色方案</div>
+    </a>
+
+    <!-- ======================== -->
+    <!-- ⬇ 扩展位置 ⬇ -->
+    <!-- 新增工具请写在这里 -->
+    <!-- ======================== -->
+
+    <!-- 最后一个：未完待续 -->
+    <div class="tool-card card-coming fade-in">
+      <div class="tool-icon">⏳</div>
+      <div class="tool-name">未完待续</div>
+      <div class="tool-desc">更多工具开发中</div>
+    </div>
+
+  </div>
+</div>
+
+<script src="assets/js/core.js"></script>
+<script>
+  document.querySelectorAll('.fade-in').forEach((el, i) => {
+    setTimeout(() => {
+      el.classList.add('visible');
+    }, i * 80);
+  });
+</script>
+</body>
+</html>

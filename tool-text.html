@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>文本处理工具-兔BUG</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+.tool-page{padding:30px 0;}
+.back-tools{color:var(--accent);margin-bottom:20px;display:inline-block;}
+.text-card{background:var(--card);border-radius:var(--radius);padding:28px;}
+textarea{width:100%;min-height:160px;padding:14px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--fg);font-size:15px;}
+.btn-bar{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0;}
+.tool-btn{padding:10px 14px;border-radius:8px;border:none;background:var(--accent);color:#fff;cursor:pointer;}
+.result-box{padding:14px;border-radius:8px;background:var(--bg);border:1px solid var(--border);color:var(--fg);min-height:60px;white-space:pre-wrap;}
+</style>
+
+<div class="container tool-page">
+  <a href="tools.html" class="back-tools">← 返回工具箱</a>
+  <h2>文本处理工具</h2>
+
+  <div class="text-card">
+    <textarea id="inputText" placeholder="粘贴需要处理的文本"></textarea>
+    <div class="btn-bar">
+      <button class="tool-btn" onclick="stat()">字数统计</button>
+      <button class="tool-btn" onclick="clearSpace()">去所有空格</button>
+      <button class="tool-btn" onclick="upper()">转大写</button>
+      <button class="tool-btn" onclick="lower()">转小写</button>
+      <button class="tool-btn" onclick="clearAll()">清空</button>
+    </div>
+    <div id="result" class="result-box">结果将显示在这里</div>
+  </div>
+</div>
+
+<script src="assets/js/core.js"></script>
+<script>
+const i = document.getElementById('inputText');
+const r = document.getElementById('result');
+function stat(){ r.textContent = `总字数：${i.value.length}\n无空格：${i.value.replace(/\s/g,'').length}`; }
+function clearSpace(){ i.value = i.value.replace(/\s+/g,''); stat(); }
+function upper(){ i.value = i.value.toUpperCase(); }
+function lower(){ i.value = i.value.toLowerCase(); }
+function clearAll(){ i.value=''; r.textContent=''; }
+</script>
+</html>

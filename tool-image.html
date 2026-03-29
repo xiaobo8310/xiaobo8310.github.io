@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>图片处理工具-兔BUG</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+.tool-page {
+  padding: 30px 0;
+}
+.back-tools {
+  color: var(--accent);
+  margin-bottom: 20px;
+  display: inline-block;
+}
+.tool-wrapper {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.tool-img-preview {
+  max-width: 100%;
+  max-height: 400px;
+  border-radius: 10px;
+  margin: 0 auto;
+  display: none;
+}
+.tool-btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+}
+.tool-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.tool-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+select, input {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--fg);
+}
+</style>
+</head>
+
+<body class="page-fade">
+<div class="container tool-page">
+  <a href="tools.html" class="back-tools">← 返回工具箱</a>
+  <h2>图片处理（图片压缩｜格式转换）</h2>
+
+  <div class="tool-wrapper">
+    <input type="file" id="imgFile" accept="image/*" style="display:none;">
+    <button class="tool-btn" onclick="document.getElementById('imgFile').click()">📸 选择图片</button>
+
+    <img id="preview" class="tool-img-preview">
+
+    <div class="tool-row">
+      <select id="imgFormat">
+        <option value="jpeg">JPG</option>
+        <option value="png">PNG</option>
+        <option value="webp">WEBP</option>
+        <option value="ico">ICO (图标)</option>
+      </select>
+
+      <input type="number" id="quality" value="80" min="10" max="100">
+      <label>质量（10-100）</label>
+    </div>
+
+    <div class="tool-row">
+      <button class="tool-btn" id="processBtn" disabled>⚙️ 处理并导出</button>
+      <a id="downloadLink" style="display:none;"></a>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/core.js"></script>
+<script>
+let imgFile = null;
+const preview = document.getElementById('preview');
+const processBtn = document.getElementById('processBtn');
+const imgFileInput = document.getElementById('imgFile');
+
+// 选择图片
+imgFileInput.onchange = (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  imgFile = file;
+  const url = URL.createObjectURL(file);
+  preview.src = url;
+  preview.style.display = 'block';
+  processBtn.disabled = false;
+};
+
+// 导出主函数
+document.getElementById('processBtn').onclick = () => {
+  const format = document.getElementById('imgFormat').value;
+  if (format === 'ico') {
+    exportAsIco();
+  } else {
+    exportNormal();
+  }
+};
+
+// 普通格式导出
+function exportNormal() {
+  const format = document.getElementById('imgFormat').value;
+  const quality = document.getElementById('quality').value / 100;
+  const img = new Image();
+  img.onload = () => {
+    const canvas = document.createElement('canvas');
+    canvas.width = img.width;
+    canvas.height = img.height;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0);
+    canvas.toBlob(blob => {
+      download(blob, `processed.${format}`);
+    }, `image/${format}`, quality);
+  };
+  img.src = URL.createObjectURL(imgFile);
+}
+
+// 🔥 导出 ICO（Windows 图标）
+function exportAsIco() {
+  const img = new Image();
+  img.onload = () => {
+    const size = 256;
+    const canvas = document.createElement('canvas');
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0, size, size);
+
+    canvas.toBlob(blob => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const buffer = reader.result;
+        const icoBuffer = createIco(buffer);
+        const blobIco = new Blob([icoBuffer], { type: 'image/x-icon' });
+        download(blobIco, 'icon.ico');
+      };
+      reader.readAsArrayBuffer(blob);
+    });
+  };
+  img.src = URL.createObjectURL(imgFile);
+}
+
+// ICO 格式生成
+function createIco(pngBuffer) {
+  const size = pngBuffer.byteLength;
+  const header = new Uint8Array([0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0, size&255, size>>8, 0,0]);
+  const ico = new Uint8Array(header.length + size);
+  ico.set(header, 0);
+  ico.set(new Uint8Array(pngBuffer), header.length);
+  return ico;
+}
+
+// 下载通用函数
+function download(blob, name) {
+  const a = document.getElementById('downloadLink');
+  a.href = URL.createObjectURL(blob);
+  a.download = name;
+  a.click();
+}
+</script>
+</body>
+</html>

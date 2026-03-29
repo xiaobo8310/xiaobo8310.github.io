@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>图片吸管取色</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+.tool-page { padding: 30px 0; }
+.back-tools { color:var(--accent); margin-bottom:20px; display:inline-block; }
+.color-wrap { background:var(--card); border-radius:var(--radius); padding:24px; }
+.canvas-box { position:relative; display:inline-block; max-width:100%; }
+#imgCanvas {
+  max-width:100%;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  cursor:crosshair;
+  background:#000;
+  display:block;
+}
+#crosshair {
+  position:absolute;
+  width:20px; height:20px;
+  border:2px solid #fff;
+  border-radius:50%;
+  pointer-events:none;
+  display:none;
+  transform:translate(-50%,-50%);
+  z-index:10;
+}
+.ctrl-row { margin:16px 0; display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+.info-row { display:flex; gap:12px; flex-wrap:wrap; margin-top:12px; }
+.color-preview { width:48px; height:48px; border-radius:6px; border:1px solid var(--border); }
+.info-item { flex:1; min-width:140px; padding:10px; border:1px solid var(--border); border-radius:6px; background:var(--bg); }
+.tool-btn { padding:9px 18px; border-radius:6px; border:none; background:var(--accent); color:#fff; cursor:pointer; }
+.tip-text{font-size:13px;color:var(--muted);margin-bottom:12px;}
+</style>
+</head>
+<body class="page-fade">
+<div class="container tool-page">
+  <a href="tools.html" class="back-tools">← 返回工具箱</a>
+  <h2>图片吸管取色（上传/粘贴截图）</h2>
+  <div class="tip-text">点击图片任意位置 → 即时提取该处颜色，再次点击更换新颜色</div>
+
+  <div class="color-wrap">
+    <div class="ctrl-row">
+      <input type="file" id="fileInput" accept="image/*">
+      <button class="tool-btn" onclick="copyHex()">复制 HEX</button>
+      <button class="tool-btn" onclick="copyRgb()">复制 RGB</button>
+    </div>
+
+    <div class="canvas-box" id="canvasBox">
+      <canvas id="imgCanvas"></canvas>
+      <div id="crosshair"></div>
+    </div>
+
+    <div class="info-row">
+      <div id="colorView" class="color-preview"></div>
+      <div class="info-item">HEX：<span id="hexVal">#000000</span></div>
+      <div class="info-item">RGB：<span id="rgbVal">0,0,0</span></div>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/core.js"></script>
+<script>
+const canvas = document.getElementById('imgCanvas');
+const ctx = canvas.getContext('2d');
+const cross = document.getElementById('crosshair');
+const box = document.getElementById('canvasBox');
+
+let curHex = "#000000";
+let curRgb = "0,0,0";
+
+// 上传图片
+document.getElementById('fileInput').addEventListener('change', e => {
+  const file = e.target.files[0];
+  if(!file) return;
+  loadImage(file);
+});
+
+// 粘贴截图
+document.addEventListener('paste', e => {
+  const items = e.clipboardData?.items;
+  if(!items) return;
+  for(let item of items){
+    if(item.kind === 'file'){
+      loadImage(item.getAsFile());
+      break;
+    }
+  }
+});
+
+function loadImage(file){
+  const img = new Image();
+  img.onload = () => {
+    const maxW = 700;
+    let w = img.width, h = img.height;
+    if(w > maxW){
+      const scale = maxW / w;
+      w = maxW; h *= scale;
+    }
+    canvas.width = w;
+    canvas.height = h;
+    ctx.drawImage(img,0,0,w,h);
+  };
+  img.src = URL.createObjectURL(file);
+}
+
+// 鼠标移动：准星跟随
+canvas.addEventListener('mousemove', e => {
+  const rect = canvas.getBoundingClientRect();
+  cross.style.display = 'block';
+  cross.style.left = e.clientX - box.getBoundingClientRect().left + 'px';
+  cross.style.top = e.clientY - box.getBoundingClientRect().top + 'px';
+});
+
+// 核心：点击立刻取色，点哪吸哪，覆盖上一次
+canvas.addEventListener('click', e => {
+  const rect = canvas.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  try{
+    const p = ctx.getImageData(x, y, 1, 1).data;
+    updateColor(p[0], p[1], p[2]);
+  }catch(err){}
+});
+
+// 离开隐藏准星
+canvas.addEventListener('mouseleave', () => {
+  cross.style.display = 'none';
+});
+
+function updateColor(r,g,b){
+  curRgb = `${r},${g},${b}`;
+  curHex = rgbToHex(r,g,b);
+  document.getElementById('colorView').style.background = curHex;
+  document.getElementById('hexVal').innerText = curHex;
+  document.getElementById('rgbVal').innerText = curRgb;
+}
+
+function rgbToHex(r,g,b){
+  const c = n => ("0"+n.toString(16)).slice(-2);
+  return "#"+(c(r)+c(g)+c(b)).toUpperCase();
+}
+
+function copyHex(){
+  navigator.clipboard.writeText(curHex).then(()=>alert("已复制："+curHex));
+}
+function copyRgb(){
+  navigator.clipboard.writeText(`rgb(${curRgb})`).then(()=>alert("已复制：rgb(${curRgb})"));
+}
+</script>
+</body>
+</html>

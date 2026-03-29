@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 · 页面走丢了</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐰</text></svg>">
+<style>
+/* 仅404内容样式，不碰导航栏 */
+.page-404 {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+}
+.lost-bunny {
+  font-size: 4rem;
+  margin-bottom: 16px;
+  animation: float 3s infinite ease-in-out;
+}
+.title-404 {
+  font-size: clamp(3rem, 10vw, 6rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, #8b9f9d, #c5d1d0, #8b9f9d);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin: 0;
+}
+.desc-404 {
+  color: var(--muted);
+  font-size: 1rem;
+  margin: 12px 0 30px;
+}
+.btn-home {
+  padding: 10px 28px;
+  border-radius: 999px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--fg);
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+.btn-home:hover {
+  background: var(--accent);
+  color: #fff;
+  transform: translateY(-2px);
+}
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+</style>
+</head>
+
+<body class="page-fade">
+  <!-- ✅ 这里不再手动写导航栏，完全交给 core.js 自动生成 -->
+
+  <!-- 404 内容 -->
+  <div class="container page-404">
+    <div class="lost-bunny">🐰</div>
+    <h1 class="title-404">404</h1>
+    <p class="desc-404">页面迷路啦，找不到想去的地方</p>
+    <a href="index.html" class="btn-home">返回首页</a>
+  </div>
+
+  <script src="assets/js/core.js"></script>
+</body>
+</html>
