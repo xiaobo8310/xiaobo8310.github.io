@@ -1,0 +1,81 @@
+/* ============== 全局共用 ============== */
+:root {
+  --bg: #ffffff;
+  --fg: #111111;
+  --card: #f7f7f7;
+  --border: #e0e0e0;
+  --accent: #007aff;
+  --radius: 10px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+[data-theme="dark"] {
+  --bg: #121212;
+  --fg: #f0f0f0;
+  --card: #1c1c1e;
+  --border: #2c2c2e;
+  --accent: #0a84ff;
+}
+
+[data-theme="gray"] {
+  --bg: #f0f0f2;
+  --fg: #222222;
+  --card: #e7e7e9;
+  --border: #d1d1d6;
+  --accent: #3079ed;
+}
+
+/* 导航、主题豆豆、搜索、动画、基础排版 全部共用 */
+
+/* ============== 文章页专用 ============== */
+.article-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.article-item {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  border-radius: var(--radius);
+}
+.article-cover {
+  width: 120px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+/* ============== 新闻页专用 ============== */
+.news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.news-item {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+}
+.news-source {
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+/* ============== 相册页专用 ============== */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 16px;
+}
+
+/* ============== 工具页专用 ============== */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+.tool-coming-soon {
+  border: 1px dashed var(--border);
+  opacity: 0.6;
+}

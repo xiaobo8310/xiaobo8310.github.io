@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于本站-兔BUG</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .about-wrap {
+            padding: 40px 0 60px;
+        }
+
+        .about-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 32px;
+        }
+
+        /* 头像区域 */
+        .about-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            display: block;
+            border: 3px solid var(--border);
+        }
+
+        .about-head {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .about-name {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .about-desc {
+            color: var(--muted);
+        }
+
+        /* 分区块间距 */
+        .about-section {
+            margin: 28px 0;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        .about-section h3 {
+            margin-bottom: 12px;
+            font-size: 17px;
+        }
+
+        .about-text {
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        /* 标签技能 */
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .tag-item {
+            padding: 4px 12px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .link-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .link-list a {
+            color: var(--accent);
+        }
+    </style>
+</head>
+
+<body class="page-fade">
+
+    <div class="container about-wrap">
+        <div class="about-card">
+            <!-- 头像+昵称简介 -->
+            <img class="about-avatar" src="content/avatar.jpg" alt="个人头像">
+            <div class="about-head">
+                <div class="about-name">个人主页</div>
+                <div class="about-desc">人工智能 · 通信算法 · 信号处理</div>
+            </div>
+
+            <!-- 个人简介 -->
+            <div class="about-section">
+                <h3>👤 个人概述</h3>
+                <p class="about-text">
+                    AI软件工程师，深耕智能算法、深度学习、信号处理与通信领域。
+                    长期从事模型研发、系统方案设计、工程化落地工作，注重理论与实践结合，追求稳定、高效、轻量化的技术实现。
+                    日常沉淀技术笔记、工具开发、影像记录，整理个人知识体系。
+                </p>
+            </div>
+
+            <!-- 技术栈标签 -->
+            <div class="about-section">
+                <h3>💻 技术方向</h3>
+                <div class="tag-list">
+                    <span class="tag-item">深度学习</span>
+                    <span class="tag-item">人工智能</span>
+                    <span class="tag-item">信号增强</span>
+                    <span class="tag-item">AIGC应用开发</span>
+                    <span class="tag-item">SDR软件无线电</span>
+                </div>
+            </div>
+
+            <!-- 站点说明 -->
+            <div class="about-section">
+                <h3>🌐 本站介绍</h3>
+                <p class="about-text">
+                    本网站为个人轻量化静态站点，基于GitHub Pages搭建，采用苹果风简约毛玻璃设计，支持多主题切换。
+                    集成个人技术博客、影像相册、实用工具箱、每日资讯等模块，纯前端轻量化，访问流畅、免服务依赖。
+                </p>
+            </div>
+
+            <!-- 常用链接 -->
+            <div class="about-section">
+                <h3>🔗 常用入口</h3>
+                <div class="link-list">
+                    <a href="https://github.com/xiaobo8310" target="_blank">GitHub 主页</a>
+                    <a href="articles.html" target="_self">技术文章归档</a>
+                    <a href="mailto:echo8310@qq.com" target="_blank">联系与反馈</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/core.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>通用进制互转-兔BUG</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+.tool-page {
+  padding: 30px 0;
+}
+.back-tools {
+  color: var(--accent);
+  margin-bottom: 20px;
+  display:inline-block;
+}
+.convert-wrap {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 28px;
+}
+.row-flex{
+  display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px;
+}
+.convert-select{
+  padding:12px;border-radius:8px;border:1px solid var(--border);
+  background:var(--bg);color:var(--fg);min-width:120px;
+}
+.convert-input {
+  flex:1;min-width:200px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--fg);
+  font-size: 15px;
+}
+.btn-group{
+  display:flex;gap:12px;margin-bottom:24px;
+}
+.convert-btn {
+  flex:1;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+}
+.btn-clear{
+  background:var(--border);color:var(--fg);
+}
+.convert-result {
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+}
+.result-item {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+.result-item:last-child {
+  border-bottom: none;
+}
+.result-label {
+  color: var(--muted);
+}
+.result-value {
+  font-weight: 500;
+  word-break: break-all;
+}
+.tip-text{
+  font-size:13px;color:var(--muted);margin-bottom:16px;
+}
+</style>
+</head>
+<body class="page-fade">
+<div class="container tool-page">
+  <a href="tools.html" class="back-tools">← 返回工具箱</a>
+  <h2>通用进制互转</h2>
+  <p class="tip-text">支持：二进制 / 八进制 / 十进制 / 十六进制 任意输入互转</p>
+
+  <div class="convert-wrap">
+    <div class="row-flex">
+      <select id="fromRadix" class="convert-select">
+        <option value="2">二进制</option>
+        <option value="8">八进制</option>
+        <option value="10" selected>十进制</option>
+        <option value="16">十六进制</option>
+      </select>
+      <input type="text" class="convert-input" id="numInput" placeholder="请输入对应进制数字">
+    </div>
+
+    <div class="btn-group">
+      <button class="convert-btn" onclick="transAll()">立即转换</button>
+      <button class="convert-btn btn-clear" onclick="clearAll()">清空重置</button>
+    </div>
+
+    <div class="convert-result">
+      <div class="result-item">
+        <span class="result-label">二进制</span>
+        <span class="result-value" id="binRes">-</span>
+      </div>
+      <div class="result-item">
+        <span class="result-label">八进制</span>
+        <span class="result-value" id="octRes">-</span>
+      </div>
+      <div class="result-item">
+        <span class="result-label">十进制</span>
+        <span class="result-value" id="decRes">-</span>
+      </div>
+      <div class="result-item">
+        <span class="result-label">十六进制(大写)</span>
+        <span class="result-value" id="hexRes">-</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/core.js"></script>
+<script>
+// 校验对应进制合法字符
+function checkValid(str, radix){
+  const map = {
+    2: /^[01]+$/,
+    8: /^[0-7]+$/,
+    10:/^\d+$/,
+    16:/^[0-9a-fA-F]+$/
+  };
+  return map[radix].test(str);
+}
+
+function transAll(){
+  const from = parseInt(document.getElementById('fromRadix').value);
+  const val = document.getElementById('numInput').value.trim();
+  if(!val){
+    alert("请输入数字");return;
+  }
+  if(!checkValid(val, from)){
+    alert("当前选择进制下，包含非法字符，请检查！");
+    resetResult();return;
+  }
+
+  // 先转十进制基数
+  let dec = parseInt(val, from);
+  if(isNaN(dec)){
+    alert("转换失败，请核对输入");
+    resetResult();return;
+  }
+
+  document.getElementById('binRes').textContent = dec.toString(2);
+  document.getElementById('octRes').textContent = dec.toString(8);
+  document.getElementById('decRes').textContent = dec;
+  document.getElementById('hexRes').textContent = dec.toString(16).toUpperCase();
+}
+
+function resetResult(){
+  document.getElementById('binRes').textContent = '-';
+  document.getElementById('octRes').textContent = '-';
+  document.getElementById('decRes').textContent = '-';
+  document.getElementById('hexRes').textContent = '-';
+}
+
+function clearAll(){
+  document.getElementById('numInput').value = '';
+  document.getElementById('fromRadix').value = 10;
+  resetResult();
+}
+</script>
+</body>
+</html>
