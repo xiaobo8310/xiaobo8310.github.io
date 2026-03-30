@@ -145,16 +145,16 @@ body {
 .nav-sidebar {
   position: fixed;
   top: 0;
-  right: 0;
+  left: 0;          /* 把 right:0 改成 left:0 */
   width: 240px;
   height: 100vh;
   background: var(--bg);
-  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border); /* 把 border-left 改成 border-right */
   flex-direction: column;
   padding: 80px 24px 40px;
   gap: 20px;
   z-index: 1000;
-  transform: translateX(100%);
+  transform: translateX(-100%); /* 从 -100% 开始藏在左边 */
   transition: transform 0.3s ease-in-out;
   display: none;
 }
