@@ -1,43 +1,71 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>首页-兔BUG</title>
   <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐰</text></svg>">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐰</text></svg>">
   <style>
     .hero {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
+      min-height: 70vh;
       padding-bottom: 0;
     }
+
     .hero h1 {
       opacity: 0;
       transform: translateY(30px);
       animation: hero-fade-up 0.9s cubic-bezier(0.25, 1, 0.5, 1) forwards;
     }
+
     .hero p {
       opacity: 0;
       transform: translateY(20px);
       animation: hero-fade-up 0.9s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards;
     }
+
     @keyframes hero-fade-up {
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
+
+    html,
+    body {
+      overflow: hidden;
+      height: 100%;
+    }
   </style>
 </head>
+
 <body>
   <div class="hero">
     <h1>兔BUG的个人空间</h1>
     <p>记录思考、收藏影像、使用工具</p>
   </div>
+
+  <!-- 苹果风格极简底部 -->
+  <footer style="
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 24px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted);
+    opacity: 0.6;
+  ">
+    © 2026  ·  西郊有密林 助君出重围
+  </footer>
+
   <script src="assets/js/core.js"></script>
 </body>
+
 </html>
