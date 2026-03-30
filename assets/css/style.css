@@ -522,47 +522,61 @@ body {
 /* 移动端适配（640px/480px，核心：显示三横线+隐藏PC导航） */
 /* ============================================= */
 @media (max-width: 640px) {
-
   /* 显示三横线按钮（最左） */
   .mobile-menu-btn {
     display: block;
   }
-
   /* 隐藏PC端导航链接 */
   .nav-links {
     display: none;
   }
-
   /* 文章/新闻项自适应 */
-  .article-item,
-  .news-item {
+  .article-item, .news-item {
     flex-direction: column;
     align-items: flex-start;
   }
-
-  .article-cover,
-  .news-cover {
+  .article-cover, .news-cover {
     width: 100%;
     height: auto;
   }
-
   /* 相册网格自适应 */
   .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
 @media (max-width: 480px) {
   .gallery-grid {
     grid-template-columns: 1fr;
   }
-
   /* 小屏微调豆豆与边缘间距 */
   .theme-dots {
     margin-right: 4px;
   }
 }
-/* 手机端：工具卡片缩小 */
+
+/* ============================================= */
+/* 手机端新闻：隐藏图片，纯文字展示 */
+/* ============================================= */
+@media (max-width: 640px) {
+  .news-cover {
+    display: none !important;
+  }
+  .news-item {
+    flex-direction: column !important;
+    padding: 14px 16px !important;
+  }
+  .news-title {
+    font-size: 16px !important;
+    margin-bottom: 4px !important;
+  }
+  .news-source {
+    font-size: 12px !important;
+  }
+}
+
+/* ============================================= */
+/* 手机端工具卡片缩小 */
+/* ============================================= */
 @media (max-width: 480px) {
   .tools-grid {
     grid-template-columns: repeat(2, 1fr) !important;
