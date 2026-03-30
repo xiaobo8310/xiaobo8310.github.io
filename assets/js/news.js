@@ -68,7 +68,8 @@ function renderNews() {
   newsList.innerHTML = "";
   newsData.forEach(item => {
     const html = `
-      <div class="news-item fade-in">
+      <!-- 加了 data-title，用于搜索 -->
+      <div class="news-item fade-in" data-title="${item.title}">
         <img class="news-cover" src="${item.cover}" alt="">
         <div class="news-info">
           <div class="news-title">${item.title}</div>
@@ -87,5 +88,23 @@ function renderNews() {
   });
   document.querySelectorAll(".fade-in").forEach(el => obs.observe(el));
 }
-
 renderNews();
+
+
+// ==============================
+// 新闻搜索功能（最终修复版）
+// ==============================
+document.addEventListener('DOMContentLoaded', function () {
+  const newsSearch = document.getElementById('newsSearch');
+  if (!newsSearch) return;
+
+  newsSearch.addEventListener('input', function () {
+    const kw = this.value.toLowerCase().trim();
+    document.querySelectorAll('.news-item').forEach(item => {
+      // 只搜标题
+      const title = (item.dataset.title || '').toLowerCase();
+      const show = title.includes(kw);
+      item.style.display = show ? 'flex' : 'none';
+    });
+  });
+});

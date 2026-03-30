@@ -16,10 +16,10 @@ function renderGallery() {
   grid.innerHTML = "";
   galleryData.forEach(item => {
     // 点击携带图片地址+标题跳转到详情页
-const html = `
+    const html = `
   <div 
     class="gallery-item fade-in" 
-    onclick="goDetail('${encodeURIComponent(item.cover)}','${item.title}')"
+    onclick="goDetail('${encodeURIComponent(item.cover)}','${item.title}','${item.tag}')"
     data-title="${item.title}"
     data-tag="${item.tag}"
   >
@@ -40,8 +40,8 @@ const html = `
 }
 
 // 跳转详情方法
-function goDetail(src,title){
-  window.location.href = `gallery-detail.html?src=${src}&title=${title}`;
+function goDetail(src, title, tag){
+  window.location.href = `gallery-detail.html?src=${src}&title=${title}&tag=${tag}`;
 }
 
 renderGallery();
@@ -49,9 +49,9 @@ renderGallery();
 // ==============================
 // 相册搜索功能（已修复）
 // ==============================
-document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener('DOMContentLoaded', function () {
   const gallerySearch = document.getElementById('gallerySearch');
-  if(!gallerySearch) return;
+  if (!gallerySearch) return;
 
   gallerySearch.addEventListener('input', function () {
     const kw = this.value.toLowerCase().trim();

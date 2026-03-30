@@ -7,25 +7,23 @@
 <link rel="stylesheet" href="assets/css/style.css?v=1">
 
 <style>
-/* 关键：让页面只负责展示图片，不撑开高度 */
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow: hidden; /* 禁止页面滚动！图片必须一屏显示 */
+  overflow: hidden;
 }
 
-/* 全屏居中容器 */
 .full-preview {
   width: 100vw;
-  height: calc(100vh - 60px);
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px;
+  padding: 70px 10px 32vh;
+  box-sizing: border-box;
 }
 
-/* 返回按钮 */
 .back-btn {
   position: fixed;
   top: 70px;
@@ -43,33 +41,32 @@ html, body {
   color: #fff;
 }
 
-/* 🔥 核心：无论图片多大/多小，永远等比例 + 不超过屏幕70% */
 .image-box {
   max-width: 70vw;
   max-height: 70vh;
-  width: auto;
-  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .image-box img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain; /* 等比例！完整显示！ */
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
   border-radius: 12px;
   box-shadow: 0 8px 30px rgba(0,0,0,0.1);
 }
 
-/* 下方信息：需要滚动看 → 放在独立可滚动区域 */
 .info-panel {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  max-height: 30vh;
+  max-height: 32vh;
   background: var(--bg);
   border-top: 1px solid var(--border);
   padding: 16px 20px;
-  overflow-y: auto; /* 只有这里可以滚动 */
+  overflow-y: auto;
 }
 .info-title {
   font-size: 16px;
@@ -92,13 +89,12 @@ html, body {
     </div>
   </div>
 
-  <!-- 图片信息（可滚动） -->
   <div class="info-panel">
     <div class="info-title" id="imgTitle">加载中...</div>
     <div class="info-meta">
-      尺寸：自适应<br>
-      时间：2026-03-29<br>
-      标签：相册展示｜测试图片｜4K兼容
+      尺寸：<span id="imgSize">读取中...</span><br>
+      时间：2026-03-30<br>
+      标签：<span id="imgTag">加载中...</span>
     </div>
   </div>
 
@@ -107,11 +103,22 @@ html, body {
     const p = new URLSearchParams(location.search)
     const src = decodeURIComponent(p.get('src') || '')
     const title = p.get('title') || '图片'
+    const tag = p.get('tag') || '暂无标签'
+    
+    // 把 测试,风景 → 测试|风景
+    const showTag = tag.replace(/,/g, ' | ')
 
-    if (src) {
-      document.getElementById('mainImg').src = src
-      document.getElementById('imgTitle').innerText = title
+    const img = document.getElementById('mainImg')
+    document.getElementById('imgTitle').innerText = title
+    document.getElementById('imgTag').innerText = showTag
+
+    img.onload = function() {
+      const w = this.naturalWidth
+      const h = this.naturalHeight
+      document.getElementById('imgSize').innerText = w + ' × ' + h + ' 像素'
     }
+
+    img.src = src
   </script>
 </body>
 </html>

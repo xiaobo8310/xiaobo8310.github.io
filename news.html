@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>今日新闻-兔BUG</title>
-<link rel="stylesheet" href="assets/css/style.css?v=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>今日新闻-兔BUG</title>
+  <link rel="stylesheet" href="assets/css/style.css?v=1">
 
 </head>
+
 <body class="page-fade">
 
-<div class="container">
-  <div class="search-box">
-    <input type="text" placeholder="浏览今日新闻..." disabled>
+  <div class="container">
+    <div class="search-box">
+      <input id="newsSearch" type="text" placeholder="搜索新闻标题 / 内容...">
+    </div>
+
+    <div class="news-list" id="newsList"></div>
   </div>
 
-  <div class="news-list" id="newsList"></div>
-</div>
-
-<script src="assets/js/core.js"></script>
-<script src="assets/js/news.js"></script>
+  <script src="assets/js/core.js"></script>
+  <script src="assets/js/news.js"></script>
 </body>
+
 </html>
