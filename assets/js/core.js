@@ -74,3 +74,18 @@ window.addEventListener("scroll", () => {
 toTopBtn.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
+
+
+// =============================================
+// 5. 移动端三横线菜单
+// =============================================
+document.addEventListener('DOMContentLoaded', function () {
+  const btn = document.querySelector('.mobile-menu-btn')
+  const menu = document.querySelector('.nav-links')
+  if (btn && menu) {
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('show')
+      btn.textContent = menu.classList.contains('show') ? '✕' : '☰'
+    })
+  }
+})
