@@ -5,6 +5,7 @@ document.body.insertAdjacentHTML("afterbegin", `
 <nav class="nav">
   <div class="container nav-inner">
     <div class="nav-logo">🐰BUG</div>
+    <button class="mobile-menu-btn">☰</button>
     <div class="nav-links">
       <a href="index.html">首页</a>
       <a href="articles.html">文章</a>
