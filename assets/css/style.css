@@ -90,6 +90,7 @@ body {
   align-items: center;
   justify-content: space-between;
   height: 60px;
+  position: relative;
 }
 
 .nav-logo {
@@ -114,9 +115,6 @@ body {
   color: #fff;
 }
 
-/* ============================================= */
-/* 移动端菜单按钮（三横线） */
-/* ============================================= */
 .mobile-menu-btn {
   display: none;
   font-size: 22px;
@@ -124,6 +122,7 @@ body {
   border: none;
   color: var(--fg);
   cursor: pointer;
+  z-index: 9999;
 }
 
 /* ============================================= */
@@ -324,7 +323,7 @@ body {
 }
 
 /* ============================================= */
-/* 相册专用容器（比页面宽，保留适度留白） */
+/* 相册专用容器 */
 /* ============================================= */
 .gallery-container {
   max-width: 1000px;
@@ -332,9 +331,6 @@ body {
   padding: 0 20px;
 }
 
-/* ============================================= */
-/* 相册网格（最多4列，最少1列，自适应） */
-/* ============================================= */
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -398,7 +394,7 @@ body {
 }
 
 /* ============================================= */
-/* 工具网格专用 */
+/* 工具网格 */
 /* ============================================= */
 .tools-grid {
   display: grid;
@@ -430,7 +426,7 @@ body {
 }
 
 /* ============================================= */
-/* 加载更多按钮 */
+/* 加载更多 */
 /* ============================================= */
 .load-more {
   margin: 30px 0;
@@ -448,7 +444,7 @@ body {
 }
 
 /* ============================================= */
-/* 文章详情 markdown 渲染区 */
+/* 文章详情 */
 /* ============================================= */
 .markdown-view {
   margin-top: 24px;
@@ -471,24 +467,17 @@ body {
 }
 
 /* ============================================= */
-/* 页面淡入动画 */
+/* 动画 */
 /* ============================================= */
 .page-fade {
   animation: pageFade 0.5s ease;
 }
 
 @keyframes pageFade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-/* ============================================= */
-/* 卡片淡入动画 */
-/* ============================================= */
 .fade-in {
   opacity: 0;
   transform: translateY(10px);
@@ -501,11 +490,11 @@ body {
 }
 
 /* ============================================= */
-/* 移动端适配 + 三横线菜单完美版 */
+/* 移动端菜单（最终修复版） */
 /* ============================================= */
 @media (max-width: 640px) {
   .nav-links {
-    display: none;
+    display: none !important;
     position: fixed;
     top: 60px;
     left: 0;
@@ -515,24 +504,27 @@ body {
     padding: 20px;
     gap: 16px;
     border-bottom: 1px solid var(--border);
+    z-index: 999;
   }
 
   .nav-links.show {
-    display: flex;
+    display: flex !important;
   }
 
   .mobile-menu-btn {
-    display: block;
+    display: block !important;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
   }
 
-  .article-item,
-  .news-item {
+  .article-item, .news-item {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .article-cover,
-  .news-cover {
+  .article-cover, .news-cover {
     width: 100%;
     height: auto;
   }

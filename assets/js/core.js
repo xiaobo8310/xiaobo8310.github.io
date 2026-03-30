@@ -1,5 +1,5 @@
 // =============================================
-// 1. 自动插入导航（所有页面共用，零冗余）
+// 自动插入导航
 // =============================================
 document.body.insertAdjacentHTML("afterbegin", `
 <nav class="nav">
@@ -24,7 +24,7 @@ document.body.insertAdjacentHTML("afterbegin", `
 `);
 
 // =============================================
-// 2. 自动设置当前菜单高亮
+// 菜单高亮
 // =============================================
 const curPath = window.location.pathname.split("/").pop();
 document.querySelectorAll(".nav-links a").forEach((a) => {
@@ -34,16 +34,14 @@ document.querySelectorAll(".nav-links a").forEach((a) => {
 });
 
 // =============================================
-// 3. 主题切换（三个豆豆）
+// 主题切换
 // =============================================
 const savedTheme = localStorage.getItem("theme") || "light";
 document.documentElement.setAttribute("data-theme", savedTheme);
 
 function updateDots() {
-  document.querySelectorAll(".theme-dot").forEach((dot) => {
-    dot.classList.remove("active");
-  });
-  document.querySelector(`.theme-dot.${savedTheme}`).classList.add("active");
+  document.querySelectorAll(".theme-dot").forEach((dot) => dot.classList.remove("active"));
+  document.querySelector(`.theme-dot.${savedTheme}`)?.classList.add("active");
 }
 updateDots();
 
@@ -57,36 +55,27 @@ document.querySelectorAll(".theme-dot").forEach((dot) => {
 });
 
 // =============================================
-// 4. 回到顶部按钮
+// 回到顶部
 // =============================================
-document.body.insertAdjacentHTML("beforeend", `
-<div class="to-top">↑</div>
-`);
-
+document.body.insertAdjacentHTML("beforeend", `<div class="to-top">↑</div>`);
 const toTopBtn = document.querySelector(".to-top");
 window.addEventListener("scroll", () => {
-  if (window.scrollY > 400) {
-    toTopBtn.classList.add("show");
-  } else {
-    toTopBtn.classList.remove("show");
-  }
+  toTopBtn.classList.toggle("show", window.scrollY > 400);
 });
-
 toTopBtn.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-
 // =============================================
-// 5. 移动端三横线菜单
+// ✅ 移动端菜单（最终修复版）
 // =============================================
-document.addEventListener('DOMContentLoaded', function () {
-  const btn = document.querySelector('.mobile-menu-btn')
-  const menu = document.querySelector('.nav-links')
+setTimeout(() => {
+  const btn = document.querySelector('.mobile-menu-btn');
+  const menu = document.querySelector('.nav-links');
   if (btn && menu) {
     btn.addEventListener('click', () => {
-      menu.classList.toggle('show')
-      btn.textContent = menu.classList.contains('show') ? '✕' : '☰'
-    })
+      menu.classList.toggle('show');
+      btn.textContent = menu.classList.contains('show') ? '✕' : '☰';
+    });
   }
-})
+}, 0);
