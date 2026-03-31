@@ -3,42 +3,42 @@ const articleData = [
   {
     title: "第一篇技术笔记",
     desc: "记录日常开发、算法调优与工程落地心得",
-    cover: "assets/static/placeholder.jpg",
+    cover: "assets/static/文章封面.jpg",
     path: "content/articles/2026/03/note1.md",
     time: "2026-03-01"
   },
   {
     title: "AI模型部署实践",
     desc: "轻量化推理、端侧部署、性能压测总结",
-    cover: "assets/static/placeholder.jpg",
+    cover: "assets/static/文章封面.jpg",
     path: "content/articles/2026/03/note2.md",
     time: "2026-03-02"
   },
   {
     title: "Git与版本管理规范",
     desc: "团队协作分支策略、commit规范、冲突解决",
-    cover: "assets/static/placeholder.jpg",
+    cover: "assets/static/文章封面.jpg",
     path: "content/articles/2026/03/note3.md",
     time: "2026-03-03"
   },
   {
     title: "前端工程化搭建",
     desc: "静态站点架构、资源拆分、性能优化",
-    cover: "assets/static/placeholder.jpg",
+    cover: "assets/static/文章封面.jpg",
     path: "content/articles/2026/03/note4.md",
     time: "2026-03-04"
   },
   {
     title: "Python自动化脚本开发",
     desc: "文件批量处理、目录整理、GUI工具设计",
-    cover: "assets/static/placeholder.jpg",
+    cover: "assets/static/文章封面.jpg",
     path: "content/articles/2026/03/note5.md",
     time: "2026-03-05"
   },
   {
     title: "通信基础原理梳理",
     desc: "信道、调制解调、抗干扰基础知识点汇总",
-    cover: "assets/static/placeholder.jpg",
+    cover: "assets/static/文章封面.jpg",
     path: "content/articles/2026/03/note6.md",
     time: "2026-03-06"
   },
