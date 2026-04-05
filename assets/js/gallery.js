@@ -14,12 +14,11 @@ const grid = document.getElementById("galleryGrid");
 
 function renderGallery() {
   grid.innerHTML = "";
-  galleryData.forEach(item => {
-    // 点击携带图片地址+标题跳转到详情页
+  galleryData.forEach((item, i) => {
     const html = `
   <div 
     class="gallery-item fade-in" 
-    onclick="goDetail('${encodeURIComponent(item.cover)}','${item.title}','${item.tag}')"
+    onclick="goDetail('${encodeURIComponent(item.cover)}','${item.title}','${item.tag}',${i})"
     data-title="${item.title}"
     data-tag="${item.tag}"
   >
@@ -30,7 +29,6 @@ function renderGallery() {
     grid.insertAdjacentHTML("beforeend", html);
   });
 
-  // 懒加载渐入动画
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) e.target.classList.add("visible");
@@ -39,15 +37,15 @@ function renderGallery() {
   document.querySelectorAll(".fade-in").forEach(el => obs.observe(el));
 }
 
-// 跳转详情方法
-function goDetail(src, title, tag){
-  window.location.href = `gallery-detail.html?src=${src}&title=${title}&tag=${tag}`;
+function goDetail(src, title, tag, index){
+  window.location.href = `gallery-detail.html?src=${src}&title=${title}&tag=${tag}&index=${index}`;
 }
 
 renderGallery();
+localStorage.setItem("galleryList", JSON.stringify(galleryData));
 
 // ==============================
-// 相册搜索功能（已修复）
+// 相册搜索功能
 // ==============================
 document.addEventListener('DOMContentLoaded', function () {
   const gallerySearch = document.getElementById('gallerySearch');

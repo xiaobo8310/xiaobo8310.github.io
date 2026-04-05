@@ -14,10 +14,9 @@ html, body {
   overflow: hidden;
 }
 
-/* 核心布局：精确避开导航栏和底部栏 */
 .full-preview {
   width: 100vw;
-  height: calc(100vh - 60px - 100px); /* 导航栏60px + 底部栏100px */
+  height: calc(100vh - 60px - 100px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,7 +24,6 @@ html, body {
   box-sizing: border-box;
 }
 
-/* 手机端适配 */
 @media (max-width: 640px) {
   .full-preview {
     height: calc(100vh - 60px - 90px);
@@ -33,7 +31,6 @@ html, body {
   }
 }
 
-/* 返回相册按钮 */
 .back-btn {
   position: fixed;
   top: 15px;
@@ -51,7 +48,6 @@ html, body {
   color: #fff;
 }
 
-/* 图片容器：等比例最大显示 + 四周留白 */
 .image-box {
   width: 90%;
   height: 90%;
@@ -67,22 +63,54 @@ html, body {
   box-shadow: 0 8px 30px rgba(0,0,0,0.1);
 }
 
-/* 🔥 底部信息栏：无滚动条 + 紧凑高度 */
+.nav-btn {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.3);
+  color: #fff;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 999;
+  border: none;
+  transition: 0.2s;
+}
+.nav-btn:hover {
+  background: rgba(0,0,0,0.6);
+}
+.prev { left: 20px; }
+.next { right: 20px; }
+
+@media (max-width: 640px) {
+  .nav-btn {
+    width: 60px;
+    height: 60px;
+    font-size: 26px;
+  }
+  .prev { left: 10px; }
+  .next { right: 10px; }
+}
+
 .info-panel {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 120px; /* 电脑端高度 */
+  height: 120px;
   background: var(--bg);
   border-top: 1px solid var(--border);
   padding: 16px 20px;
   box-sizing: border-box;
-  overflow: hidden; /* 🔥 去掉滚动条 */
+  overflow: hidden;
   z-index: 10;
 }
 
-/* 手机端底部栏 */
 @media (max-width: 640px) {
   .info-panel {
     height: 120px;
@@ -108,6 +136,9 @@ html, body {
 
 <div class="back-btn" onclick="location.href='gallery.html'">← 返回相册</div>
 
+<button class="nav-btn prev" id="prevBtn">←</button>
+<button class="nav-btn next" id="nextBtn">→</button>
+
 <div class="full-preview">
   <div class="image-box">
     <img id="mainImg" alt="">
@@ -129,6 +160,7 @@ const p = new URLSearchParams(location.search)
 const src = decodeURIComponent(p.get('src') || '')
 const title = p.get('title') || '图片'
 const tag = p.get('tag') || '暂无标签'
+const index = parseInt(p.get('index')) || 0
 
 const showTag = tag.replace(/,/g, ' | ')
 const img = document.getElementById('mainImg')
@@ -139,8 +171,23 @@ document.getElementById('imgTag').innerText = showTag
 img.onload = function() {
   document.getElementById('imgSize').innerText = `${this.naturalWidth} × ${this.naturalHeight} 像素`
 }
-
 img.src = src
+
+const galleryList = JSON.parse(localStorage.getItem('galleryList') || '[]')
+const prevBtn = document.getElementById('prevBtn')
+const nextBtn = document.getElementById('nextBtn')
+
+prevBtn.onclick = () => {
+  if (index <= 0) return
+  const item = galleryList[index - 1]
+  location.href = `gallery-detail.html?src=${encodeURIComponent(item.cover)}&title=${item.title}&tag=${item.tag}&index=${index - 1}`
+}
+
+nextBtn.onclick = () => {
+  if (index >= galleryList.length - 1) return
+  const item = galleryList[index + 1]
+  location.href = `gallery-detail.html?src=${encodeURIComponent(item.cover)}&title=${item.title}&tag=${item.tag}&index=${index + 1}`
+}
 </script>
 
 </body>
