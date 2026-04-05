@@ -6,40 +6,58 @@
 <title>文章详情-兔BUG</title>
 <link rel="stylesheet" href="assets/css/style.css?v=1">
 
+<style>
+/* 全站统一返回按钮 */
+.back-btn {
+  display: inline-block;
+  padding: 8px 16px;
+  background: var(--card);
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 20px 0 24px;
+}
+.back-btn:hover {
+  opacity: 0.8;
+}
+
+</style>
+
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body class="page-fade">
 
 <div class="container">
-  <div style="margin:20px 0;">
-    <a href="articles.html" style="color:var(--accent);">← 返回文章列表</a>
-  </div>
+  <div class="back-btn" onclick="location.href='articles.html'">← 返回文章列表</div>
   <div class="markdown-view" id="mdContent">加载中...</div>
 </div>
 
 <script src="assets/js/core.js"></script>
 <script>
-// 强制写死测试路径（保证一定能读到）
-const testMdPath = "content/articles/2026/03/note1.md";
+// 从 URL 动态获取文章路径（支持所有文章！）
+const params = new URLSearchParams(location.search);
+const mdPath = params.get("path") || "content/articles/2026/03/note1.md";
 
-fetch(testMdPath)
+fetch(mdPath)
   .then(res => {
-    if (!res.ok) throw new Error("文件不存在或路径错误");
+    if (!res.ok) throw new Error("文件不存在");
     return res.text();
   })
   .then(raw => {
-    const html = marked.parse(raw);
+    // 自动修复 MD 图片路径（关键！）
+    const basePath = mdPath.substring(0, mdPath.lastIndexOf("/") + 1);
+    const fixedRaw = raw.replace(/!\[(.*?)\]\((.*?)\)/g, (full, alt, src) => {
+      if (src.startsWith("http")) return full;
+      return `![${alt}](${basePath}${src})`;
+    });
+
+    const html = marked.parse(fixedRaw);
     document.getElementById("mdContent").innerHTML = html;
   })
   .catch(err => {
     document.getElementById("mdContent").innerHTML = `
-      <p>读取失败原因：${err.message}</p>
-      <p>当前尝试读取：${testMdPath}</p>
-      <p>请检查文件夹路径是否正确</p>
+      <p>读取失败：${err.message}</p>
     `;
   });
-</script>
-</body>
 </script>
 </body>
 </html>

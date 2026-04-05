@@ -490,21 +490,26 @@ body {
 .markdown-view {
   margin-top: 24px;
   line-height: 1.7;
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 28px;
+  border: 1px solid var(--border);
 }
 
 .markdown-view h1,
 .markdown-view h2,
 .markdown-view h3 {
-  margin: 1.2em 0 0.6em;
+  margin: 0.6em 0 0.4em; /* 👈 收窄了！ */
 }
 
 .markdown-view p {
-  margin: 0.7em 0;
+  margin: 0.5em 0;
 }
 
 .markdown-view img {
   margin: 1em 0;
   border-radius: var(--radius);
+  max-width: 100%;
 }
 
 /* ============================================= */

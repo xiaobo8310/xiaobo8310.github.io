@@ -10,11 +10,20 @@
 .tool-page {
   padding: 30px 0;
 }
-.back-tools {
-  color: var(--accent);
+
+/* 🔥 统一返回按钮样式（和新闻页完全一样） */
+.back-btn {
+  display: inline-block;
+  padding: 8px 16px;
+  background: var(--card);
+  border-radius: 8px;
+  cursor: pointer;
   margin-bottom: 20px;
-  display:inline-block;
 }
+.back-btn:hover {
+  opacity: 0.8;
+}
+
 .convert-wrap {
   background: var(--card);
   border-radius: var(--radius);
@@ -80,7 +89,10 @@
 </head>
 <body class="page-fade">
 <div class="container tool-page">
-  <a href="tools.html" class="back-tools">← 返回工具箱</a>
+
+  <!-- 🔥 替换成统一的返回按钮 -->
+  <div class="back-btn" onclick="location.href='tools.html'">← 返回工具箱</div>
+
   <h2>通用进制互转</h2>
   <p class="tip-text">支持：二进制 / 八进制 / 十进制 / 十六进制 任意输入互转</p>
 
@@ -153,7 +165,7 @@ function transAll(){
   }
 
   document.getElementById('binRes').textContent = dec.toString(2);
-  document.getElementById('octRes').textContent = dec.toString(8);
+  document.getElementById('octRes').textContent = dec.toString(8);btn
   document.getElementById('decRes').textContent = dec;
   document.getElementById('hexRes').textContent = dec.toString(16).toUpperCase();
 }

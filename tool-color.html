@@ -8,7 +8,6 @@
 
 <style>
 .tool-page { padding: 30px 0; }
-.back-tools { color:var(--accent); margin-bottom:20px; display:inline-block; }
 .color-wrap { background:var(--card); border-radius:var(--radius); padding:24px; }
 .canvas-box { position:relative; display:inline-block; max-width:100%; }
 #imgCanvas {
@@ -29,6 +28,20 @@
   transform:translate(-50%,-50%);
   z-index:10;
 }
+
+/* 🔥 你理想的返回按钮（和新闻页一模一样） */
+.back-btn {
+  display: inline-block;
+  padding: 8px 16px;
+  background: var(--card);
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+.back-btn:hover {
+  opacity: 0.8;
+}
+
 .ctrl-row { margin:16px 0; display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
 .info-row { display:flex; gap:12px; flex-wrap:wrap; margin-top:12px; }
 .color-preview { width:48px; height:48px; border-radius:6px; border:1px solid var(--border); }
@@ -39,7 +52,10 @@
 </head>
 <body class="page-fade">
 <div class="container tool-page">
-  <a href="tools.html" class="back-tools">← 返回工具箱</a>
+
+  <!-- 🔥 理想样式返回按钮 -->
+  <div class="back-btn" onclick="location.href='tools.html'">← 返回工具箱</div>
+
   <h2>图片吸管取色（上传/粘贴截图）</h2>
   <div class="tip-text">点击图片任意位置 → 即时提取该处颜色，再次点击更换新颜色</div>
 
@@ -73,14 +89,12 @@ const box = document.getElementById('canvasBox');
 let curHex = "#000000";
 let curRgb = "0,0,0";
 
-// 上传图片
 document.getElementById('fileInput').addEventListener('change', e => {
   const file = e.target.files[0];
   if(!file) return;
   loadImage(file);
 });
 
-// 粘贴截图
 document.addEventListener('paste', e => {
   const items = e.clipboardData?.items;
   if(!items) return;
@@ -108,7 +122,6 @@ function loadImage(file){
   img.src = URL.createObjectURL(file);
 }
 
-// 鼠标移动：准星跟随
 canvas.addEventListener('mousemove', e => {
   const rect = canvas.getBoundingClientRect();
   cross.style.display = 'block';
@@ -116,7 +129,6 @@ canvas.addEventListener('mousemove', e => {
   cross.style.top = e.clientY - box.getBoundingClientRect().top + 'px';
 });
 
-// 核心：点击立刻取色，点哪吸哪，覆盖上一次
 canvas.addEventListener('click', e => {
   const rect = canvas.getBoundingClientRect();
   const x = e.clientX - rect.left;
@@ -127,7 +139,6 @@ canvas.addEventListener('click', e => {
   }catch(err){}
 });
 
-// 离开隐藏准星
 canvas.addEventListener('mouseleave', () => {
   cross.style.display = 'none';
 });

@@ -10,11 +10,20 @@
 .tool-page {
   padding: 30px 0;
 }
-.back-tools {
-  color: var(--accent);
-  margin-bottom: 20px;
+
+/* 🔥 统一返回按钮（和新闻页一模一样） */
+.back-btn {
   display: inline-block;
+  padding: 8px 16px;
+  background: var(--card);
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 20px;
 }
+.back-btn:hover {
+  opacity: 0.8;
+}
+
 .palette-header {
   text-align: center;
   margin-bottom: 24px;
@@ -104,7 +113,9 @@
 </head>
 <body class="page-fade">
 <div class="container tool-page">
-  <a href="tools.html" class="back-tools">← 返回工具箱</a>
+
+  <!-- 🔥 统一返回按钮 -->
+  <div class="back-btn" onclick="location.href='tools.html'">← 返回工具箱</div>
 
   <div class="palette-header">
     <h2>配色生成器</h2>
@@ -151,13 +162,10 @@ function monochromatic(hex) {
 
 // 生成近似色（色相±30°）
 function analogous(hex) {
-  // 简化版：在原颜色基础上轻微偏移
   const {r,g,b} = hexToRgb(hex);
   const colors = [hex];
-  // 偏绿
   colors.push(rgbToHex(Math.max(0,r-30), Math.min(255,g+20), b));
   colors.push(rgbToHex(Math.max(0,r-60), Math.min(255,g+40), b));
-  // 偏蓝
   colors.push(rgbToHex(r, Math.max(0,g-20), Math.min(255,b+30)));
   colors.push(rgbToHex(r, Math.max(0,g-40), Math.min(255,b+60)));
   return colors;

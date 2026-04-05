@@ -7,7 +7,20 @@
 
 <style>
 .tool-page{padding:30px 0;}
-.back-tools{color:var(--accent);margin-bottom:20px;display:inline-block;}
+
+/* 🔥 统一返回按钮（和新闻页一模一样） */
+.back-btn {
+  display: inline-block;
+  padding: 8px 16px;
+  background: var(--card);
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+.back-btn:hover {
+  opacity: 0.8;
+}
+
 .text-card{background:var(--card);border-radius:var(--radius);padding:28px;}
 textarea{width:100%;min-height:160px;padding:14px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--fg);font-size:15px;}
 .btn-bar{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0;}
@@ -16,7 +29,10 @@ textarea{width:100%;min-height:160px;padding:14px;border-radius:8px;border:1px s
 </style>
 
 <div class="container tool-page">
-  <a href="tools.html" class="back-tools">← 返回工具箱</a>
+
+  <!-- 🔥 统一返回按钮 -->
+  <div class="back-btn" onclick="location.href='tools.html'">← 返回工具箱</div>
+
   <h2>文本处理工具</h2>
 
   <div class="text-card">
