@@ -19,12 +19,14 @@
     }
 
     .hero h1 {
+      color: #FFFFFF !important;
       opacity: 0;
       transform: translateY(30px);
       animation: hero-fade-up 0.9s cubic-bezier(0.25, 1, 0.5, 1) forwards;
     }
 
     .hero p {
+      color: #E0E0E0 !important;
       opacity: 0;
       transform: translateY(20px);
       animation: hero-fade-up 0.9s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards;
@@ -42,16 +44,30 @@
       overflow: hidden;
       height: 100%;
     }
+
+    /* 🔥 最简单：底部森林图 */
+    .forest {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
   </style>
 </head>
 
 <body>
+
   <div class="hero">
     <h1>兔BUG的个人空间</h1>
     <p>记录思考、收藏影像、使用工具</p>
   </div>
 
-  苹果风格极简底部
+  <!-- 🔥 直接放一张图在页面最底部，就这么简单 -->
+  <img src="assets\static\forest1.png" class="forest">
+
   <footer style="
     position: fixed;
     left: 0;
@@ -59,7 +75,7 @@
     bottom: 24px;
     text-align: center;
     font-size: 13px;
-    color: var(--muted);
+    color: #FFFFFF !important;
     opacity: 0.6;
   ">
     © 2026  ·  西郊有密林 助君出重围
