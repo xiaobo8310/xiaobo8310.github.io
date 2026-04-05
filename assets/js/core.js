@@ -36,7 +36,23 @@ document.body.insertAdjacentHTML("afterbegin", `
   <a href="about.html">关于</a>
 </div>
 `);
-
+// =============================================
+// 🔥 这里加 Footer：每页自动加载（和导航一样）
+// =============================================
+document.body.insertAdjacentHTML("beforeend", `
+<!-- 苹果风格极简底部 → 正常文档流底部，不固定 -->
+<footer style="
+  width: 100%;
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+  opacity: 0.6;
+  padding: 30px 0;
+  margin-top: 30px;
+">
+  © 2026  ·  西郊有密林 助君出重围
+</footer>
+`);
 // =============================================
 // 2. 导航当前页高亮（PC导航+手机侧边栏通用）
 // =============================================
