@@ -71,26 +71,26 @@ const articleData = [
     time: "2026-03-10"
   },
   // 额外后备，用于加载更多
-  {title:"拓展笔记11",desc:"拓展内容摘要演示",cover:"assets/static/placeholder.jpg",path:"content/articles/2026/03/note11.md",time:"2026-03-11"},
-  {title:"拓展笔记12",desc:"拓展内容摘要演示",cover:"assets/static/placeholder.jpg",path:"content/articles/2026/03/note12.md",time:"2026-03-12"},
-  {title:"拓展笔记13",desc:"拓展内容摘要演示",cover:"assets/static/placeholder.jpg",path:"content/articles/2026/03/note13.md",time:"2026-03-13"},
-  {title:"拓展笔记14",desc:"拓展内容摘要演示",cover:"assets/static/placeholder.jpg",path:"content/articles/2026/03/note14.md",time:"2026-03-14"},
-  {title:"拓展笔记15",desc:"拓展内容摘要演示",cover:"assets/static/placeholder.jpg",path:"content/articles/2026/03/note15.md",time:"2026-03-15"},
-  {title:"拓展笔记16",desc:"拓展内容摘要演示",cover:"assets/static/placeholder.jpg",path:"content/articles/2026/03/note16.md",time:"2026-03-16"},
-  {title:"拓展笔记17",desc:"拓展内容摘要演示",cover:"assets/static/placeholder.jpg",path:"content/articles/2026/03/note17.md",time:"2026-03-17"},
-  {title:"拓展笔记18",desc:"拓展内容摘要演示",cover:"assets/static/placeholder.jpg",path:"content/articles/2026/03/note18.md",time:"2026-03-18"},
-  {title:"拓展笔记19",desc:"拓展内容摘要演示",cover:"assets/static/placeholder.jpg",path:"content/articles/2026/03/note19.md",time:"2026-03-19"},
-  {title:"拓展笔记20",desc:"拓展内容摘要演示",cover:"assets/static/placeholder.jpg",path:"content/articles/2026/03/note20.md",time:"2026-03-20"}
+  { title: "拓展笔记11", desc: "拓展内容摘要演示", cover: "assets/static/placeholder.jpg", path: "content/articles/2026/03/note11.md", time: "2026-03-11" },
+  { title: "拓展笔记12", desc: "拓展内容摘要演示", cover: "assets/static/placeholder.jpg", path: "content/articles/2026/03/note12.md", time: "2026-03-12" },
+  { title: "拓展笔记13", desc: "拓展内容摘要演示", cover: "assets/static/placeholder.jpg", path: "content/articles/2026/03/note13.md", time: "2026-03-13" },
+  { title: "拓展笔记14", desc: "拓展内容摘要演示", cover: "assets/static/placeholder.jpg", path: "content/articles/2026/03/note14.md", time: "2026-03-14" },
+  { title: "拓展笔记15", desc: "拓展内容摘要演示", cover: "assets/static/placeholder.jpg", path: "content/articles/2026/03/note15.md", time: "2026-03-15" },
+  { title: "拓展笔记16", desc: "拓展内容摘要演示", cover: "assets/static/placeholder.jpg", path: "content/articles/2026/03/note16.md", time: "2026-03-16" },
+  { title: "拓展笔记17", desc: "拓展内容摘要演示", cover: "assets/static/placeholder.jpg", path: "content/articles/2026/03/note17.md", time: "2026-03-17" },
+  { title: "拓展笔记18", desc: "拓展内容摘要演示", cover: "assets/static/placeholder.jpg", path: "content/articles/2026/03/note18.md", time: "2026-03-18" },
+  { title: "拓展笔记19", desc: "拓展内容摘要演示", cover: "assets/static/placeholder.jpg", path: "content/articles/2026/03/note19.md", time: "2026-03-19" },
+  { title: "拓展笔记20", desc: "拓展内容摘要演示", cover: "assets/static/placeholder.jpg", path: "content/articles/2026/03/note20.md", time: "2026-03-20" }
 ];
 
-let showCount = 10;
+let showCount = 10;// 显示数量
 const listDom = document.getElementById("articleList");
 
 // 渲染列表
-function renderList(filterArr){
+function renderList(filterArr) {
   listDom.innerHTML = "";
   const slice = filterArr.slice(0, showCount);
-  slice.forEach(item=>{
+  slice.forEach(item => {
     const html = `
     <a href="article.html?path=${encodeURIComponent(item.path)}" class="article-item fade-in">
       <img class="article-cover" src="${item.cover}" alt="">
@@ -101,31 +101,31 @@ function renderList(filterArr){
       </div>
     </a>
     `;
-    listDom.insertAdjacentHTML("beforeend",html);
+    listDom.insertAdjacentHTML("beforeend", html);
   });
   // 淡入监听
-  const obs = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting) e.target.classList.add("visible");
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add("visible");
     });
   });
-  document.querySelectorAll(".fade-in").forEach(el=>obs.observe(el));
+  document.querySelectorAll(".fade-in").forEach(el => obs.observe(el));
 }
 
 // 初始渲染全部
 renderList(articleData);
 
 // 搜索筛选
-document.getElementById("artSearch").addEventListener("input",e=>{
+document.getElementById("artSearch").addEventListener("input", e => {
   const key = e.target.value.trim().toLowerCase();
-  const filter = articleData.filter(x=>
+  const filter = articleData.filter(x =>
     x.title.toLowerCase().includes(key) || x.desc.toLowerCase().includes(key)
   );
   renderList(filter);
 });
 
 // 加载更多：一次追加20条
-document.getElementById("loadMoreBtn").addEventListener("click",()=>{
-  showCount +=20;
+document.getElementById("loadMoreBtn").addEventListener("click", () => {
+  showCount += 20;
   renderList(articleData);
 });
