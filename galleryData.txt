@@ -1,0 +1,4 @@
+const galleryData = [
+  { cover: "content/gallery/IMG_20260406_135429.jpg", title: "眠", tag: "花生,猫咪", time: "2026-04-06", photograph: "相机：vivo X200 Pro mini | 镜头焦距：133/10 | 光圈：f/2.6 | 快门：1/25s | ISO：1606" },
+  { cover: "content/gallery/b550e90a02274a6501245881d9e8a5e.jpg", title: "壁纸", tag: "chiikawam,吉伊,小八,乌萨奇", time: "2026-04-06", photograph: "NULL" },
+];

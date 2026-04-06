@@ -1,17 +1,16 @@
 // 真实本地图片数据，替换成你自己的路径
 const galleryData = [
-  { cover: "content/gallery/demo-album/img01.jpg", title: "实拍测试图集 01", tag: "测试,风景" },
-  { cover: "content/gallery/demo-album/img02.jpg", title: "实拍测试图集 02", tag: "测试,城市" },
-  { cover: "content/gallery/demo-album/img03.jpg", title: "实拍测试图集 03", tag: "测试,人像" },
-  { cover: "content/gallery/demo-album/img04.jpg", title: "实拍测试图集 04", tag: "测试,夜景" },
-  { cover: "content/gallery/demo-album/img05.jpg", title: "实拍测试图集 05", tag: "测试,风光" },
-  { cover: "content/gallery/demo-album/img06.jpg", title: "实拍测试图集 06", tag: "测试,旅行" },
-  { cover: "content/gallery/demo-album/img07.jpg", title: "实拍测试图集 07", tag: "测试,建筑" },
-  { cover: "content/gallery/demo-album/img08.jpg", title: "实拍测试图集 08", tag: "测试,生活" }
+  { cover: "content/gallery/IMG_20260406_135429.jpg", title: "眠", tag: "花生,猫咪", time: "2026-04-06", photograph: "相机：vivo X200 Pro mini | 镜头焦距：133/10 | 光圈：f/2.6 | 快门：1/25s | ISO：1606" },
+  { cover: "content/gallery/b550e90a02274a6501245881d9e8a5e.jpg", title: "壁纸", tag: "chiikawam,吉伊,小八,乌萨奇", time: "2026-04-06", photograph: "NULL" },
 ];
 
-const grid = document.getElementById("galleryGrid");
 
+
+
+// ==============================
+// 图集渲染与交互（代码不变）
+// ==============================
+const grid = document.getElementById("galleryGrid");
 function renderGallery() {
   grid.innerHTML = "";
   galleryData.forEach((item, i) => {
@@ -36,11 +35,9 @@ function renderGallery() {
   });
   document.querySelectorAll(".fade-in").forEach(el => obs.observe(el));
 }
-
-function goDetail(src, title, tag, index){
+function goDetail(src, title, tag, index) {
   window.location.href = `gallery-detail.html?src=${src}&title=${title}&tag=${tag}&index=${index}`;
 }
-
 renderGallery();
 localStorage.setItem("galleryList", JSON.stringify(galleryData));
 
