@@ -16,7 +16,7 @@ html, body {
 
 .full-preview {
   width: 100vw;
-  height: calc(100vh - 60px - 100px);
+  height: calc(100vh - 60px - 120px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,7 +26,7 @@ html, body {
 
 @media (max-width: 640px) {
   .full-preview {
-    height: calc(100vh - 60px - 90px);
+    height: calc(100vh - 60px - 160px);
     padding: 10px;
   }
 }
@@ -102,7 +102,7 @@ html, body {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 120px;
+  height: auto;
   background: var(--bg);
   border-top: 1px solid var(--border);
   padding: 16px 20px;
@@ -111,18 +111,9 @@ html, body {
   z-index: 10;
 }
 
-@media (max-width: 640px) {
-  .info-panel {
-    height: 120px;
-  }
-  .info-meta {
-    font-size: 12px;
-  }
-}
-
 .info-title {
   font-size: 16px;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 .info-meta {
   font-size: 13px;
@@ -145,12 +136,14 @@ html, body {
   </div>
 </div>
 
+<!-- 你要的整齐格式：尺寸、时间、标签、参数 -->
 <div class="info-panel">
   <div class="info-title" id="imgTitle">加载中...</div>
   <div class="info-meta">
     尺寸：<span id="imgSize">读取中...</span><br>
-    时间：2026-03-30<br>
-    标签：<span id="imgTag">加载中...</span>
+    时间：<span id="imgTime">加载中...</span><br>
+    标签：<span id="imgTag">加载中...</span><br>
+    参数：<span id="imgPhoto">加载中...</span><br>
   </div>
 </div>
 
@@ -162,18 +155,29 @@ const title = p.get('title') || '图片'
 const tag = p.get('tag') || '暂无标签'
 const index = parseInt(p.get('index')) || 0
 
-const showTag = tag.replace(/,/g, ' | ')
+const galleryList = JSON.parse(localStorage.getItem('galleryList') || '[]')
+const currentItem = galleryList[index] || {}
+
 const img = document.getElementById('mainImg')
 
-document.getElementById('imgTitle').innerText = title
-document.getElementById('imgTag').innerText = showTag
+// 自动填充所有信息
+document.getElementById('imgTitle').innerText = currentItem.title || title
+document.getElementById('imgTag').innerText = (currentItem.tag || tag).replace(/,/g, ' | ')
+document.getElementById('imgTime').innerText = currentItem.time || '未知时间'
 
+// 拍摄参数（NULL 显示为 暂无参数）
+const photoText = currentItem.photograph === 'NULL' || !currentItem.photograph 
+  ? '暂无拍摄参数' 
+  : currentItem.photograph
+document.getElementById('imgPhoto').innerText = photoText
+
+// 图片尺寸
 img.onload = function() {
   document.getElementById('imgSize').innerText = `${this.naturalWidth} × ${this.naturalHeight} 像素`
 }
-img.src = src
+img.src = currentItem.cover || src
 
-const galleryList = JSON.parse(localStorage.getItem('galleryList') || '[]')
+// 翻页
 const prevBtn = document.getElementById('prevBtn')
 const nextBtn = document.getElementById('nextBtn')
 

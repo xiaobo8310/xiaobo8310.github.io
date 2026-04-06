@@ -2,10 +2,62 @@
 const galleryData = [
   { cover: "content/gallery/IMG_20260406_135429.jpg", title: "眠", tag: "花生,猫咪", time: "2026-04-06", photograph: "相机：vivo X200 Pro mini | 镜头焦距：133/10 | 光圈：f/2.6 | 快门：1/25s | ISO：1606" },
   { cover: "content/gallery/b550e90a02274a6501245881d9e8a5e.jpg", title: "壁纸", tag: "chiikawam,吉伊,小八,乌萨奇", time: "2026-04-06", photograph: "NULL" },
+  { cover: "content/gallery/IMG_6075.JPG", title: "猪神", tag: "朱迪,猫咪", time: "2026-04-06", photograph: "NULL" },
+  { cover: "content/gallery/IMG_20250204_151643.jpg", title: "羌人谷", tag: "滑雪", time: "2025-02-04", photograph: "相机：vivo X200 Pro mini | 镜头焦距：133/10 | 光圈：f/2.6 | 快门：1011/500000s | ISO：71" },
+  { cover: "content/gallery/IMG_20250222_125107.jpg", title: "火炉山", tag: "徒步,山", time: "2025-02-22", photograph: "相机：vivo X200 Pro mini | 镜头焦距：133/10 | 光圈：f/2.6 | 快门：581/1000000s | ISO：72" },
+  { cover: "content/gallery/IMG_20250329_152939.jpg", title: "华为", tag: "Huawei", time: "2025-03-29", photograph: "相机：vivo X200 Pro mini | 镜头焦距：327/50 | 光圈：f/1.6 | 快门：4501/1000000s | ISO：71" },
+  { cover: "content/gallery/IMG_20250415_181806.jpg", title: "海珠湖", tag: "海珠湖", time: "2025-04-15", photograph: "相机：vivo X200 Pro mini | 镜头焦距：133/10 | 光圈：f/2.6 | 快门：363/62500s | ISO：72" },
+  { cover: "content/gallery/IMG_20250415_194342.jpg", title: "声音共和", tag: "声音共和", time: "2025-04-15", photograph: "相机：vivo X200 Pro mini | 镜头焦距：133/10 | 光圈：f/2.6 | 快门：1/50s | ISO：149" },
+  { cover: "content/gallery/IMG_20250415_195141.jpg", title: "声音共和", tag: "声音共和", time: "2025-04-15", photograph: "相机：vivo X200 Pro mini | 镜头焦距：327/50 | 光圈：f/1.6 | 快门：7/100s | ISO：1263" },
+  { cover: "content/gallery/IMG_20250415_214954[1].jpg", title: "生祥乐队", tag: "声音共和,Livehouse", time: "2025-04-15", photograph: "相机：vivo X200 Pro mini | 镜头焦距：133/10 | 光圈：f/2.6 | 快门：1/50s | ISO：920" },
+  { cover: "content/gallery/IMG_20250501_163742.jpg", title: "五一", tag: "海珠湖", time: "2025-05-01", photograph: "相机：vivo X200 Pro mini | 镜头焦距：133/10 | 光圈：f/2.6 | 快门：897/500000s | ISO：72" },
+  { cover: "content/gallery/IMG_20250502_144441.jpg", title: "五一", tag: "广东美术馆", time: "2025-05-02", photograph: "相机：vivo X200 Pro mini | 镜头焦距：327/50 | 光圈：f/4.0 | 快门：1951/1000000s | ISO：72" },
+  { cover: "content/gallery/IMG_20250503_194200[1].jpg", title: "新裤子", tag: "音乐节", time: "2025-05-03", photograph: "相机：vivo X200 Pro mini | 镜头焦距：133/10 | 光圈：f/2.6 | 快门：2461/1000000s | ISO：626" },
+  { cover: "content/gallery/IMG_20250519_235722.jpg", title: "羌人谷", tag: "滑雪,山", time: "2025-02-04", photograph: "相机：vivo X200 Pro mini | 镜头焦距：327/50 | 光圈：f/2.8 | 快门：1/2500s | ISO：71" },
+  { cover: "content/gallery/IMG_20250806_201627.jpg", title: "黑仔", tag: "猫咪", time: "2025-08-06", photograph: "相机：vivo X200 Pro mini | 镜头焦距：327/50 | 光圈：f/1.6 | 快门：1/100s | ISO：6014" },
+  { cover: "content/gallery/IMG_20250807_174358.jpg", title: "拾穗者", tag: "上海", time: "2025-08-07", photograph: "相机：vivo X200 Pro mini | 镜头焦距：327/50 | 光圈：f/1.6 | 快门：1/100s | ISO：2566" },
+  { cover: "content/gallery/IMG_20250807_190655.jpg", title: "梵高", tag: "上海", time: "2025-08-07", photograph: "相机：vivo X200 Pro mini | 镜头焦距：327/50 | 光圈：f/1.6 | 快门：3/100s | ISO：606" },
+  { cover: "content/gallery/IMG_20250809_132355.jpg", title: "一大", tag: "上海", time: "2025-08-09", photograph: "相机：vivo X200 Pro mini | 镜头焦距：327/50 | 光圈：f/1.6 | 快门：107/500000s | ISO：71" },
+  { cover: "content/gallery/IMG_20250809_133404.jpg", title: "一大", tag: "上海", time: "2025-08-09", photograph: "相机：vivo X200 Pro mini | 镜头焦距：327/50 | 光圈：f/1.6 | 快门：1/50s | ISO：430" },
+  { cover: "content/gallery/IMG_20250810_201913.jpg", title: "1", tag: "上海", time: "2025-08-07", photograph: "相机：vivo X200 Pro mini | 镜头焦距：327/50 | 光圈：f/1.6 | 快门：23/2500s | ISO：3118" },
+  { cover: "content/gallery/IMG_20250810_205913.jpg", title: "梵高", tag: "上海", time: "2025-08-07", photograph: "相机：vivo X200 Pro mini | 镜头焦距：327/50 | 光圈：f/1.6 | 快门：7/100s | ISO：1629" },
+  { cover: "content/gallery/IMG_20250927_190138.jpg", title: "火锅", tag: "美食", time: "2025-09-27", photograph: "相机：vivo X200 Pro mini | 镜头焦距：58/25 | 光圈：f/2.0 | 快门：1/50s | ISO：564" },
+  { cover: "content/gallery/IMG_20251031_210453.jpg", title: "猫咖", tag: "猫咪", time: "2025-10-31", photograph: "相机：vivo X200 Pro mini | 镜头焦距：133/10 | 光圈：f/2.6 | 快门：1/50s | ISO：170" },
+  { cover: "content/gallery/IMG_20251108_141803.jpg", title: "陈思江", tag: "Livehouse", time: "2025-11-08", photograph: "相机：vivo X200 Pro mini | 镜头焦距：133/10 | 光圈：f/2.6 | 快门：2083333/250000000s | ISO：1113" },
+  { cover: "content/gallery/IMG_20251108_150320.jpg", title: "舌头", tag: "Livehouse", time: "2025-11-08", photograph: "相机：vivo X200 Pro mini | 镜头焦距：133/10 | 光圈：f/2.6 | 快门：1/50s | ISO：3046" },
+  { cover: "content/gallery/IMG_20251116_175606.jpg", title: "融创滑雪", tag: "滑雪", time: "2025-11-16", photograph: "相机：vivo X200 Pro mini | 镜头焦距：58/25 | 光圈：f/2.0 | 快门：1/50s | ISO：729" },
+  { cover: "content/gallery/IMG_20260321_184347.jpg", title: "珠江新城", tag: "广州,城市", time: "2026-03-21", photograph: "相机：vivo X200 Pro mini | 镜头焦距：327/50 | 光圈：f/1.6 | 快门：1/50s | ISO：424" },
+  { cover: "content/gallery/IMG_20260213_235310.jpg", title: "猪神", tag: "朱神,猫咪", time: "2026-02-13", photograph: "相机：vivo X200 Pro mini | 镜头焦距：327/50 | 光圈：f/1.6 | 快门：1/50s | ISO：1114" },
+  { cover: "content/gallery/IMG_20260131_203148.jpg", title: "动物园钉子户", tag: "MAO,Livehouse", time: "2026-01-31", photograph: "相机：vivo X200 Pro mini | 镜头焦距：133/10 | 光圈：f/2.6 | 快门：1/100s | ISO：1611" },
+  { cover: "content/gallery/IMG_20260125_191440.jpg", title: "琶洲", tag: "广州,琶洲", time: "2026-01-25", photograph: "相机：vivo X200 Pro mini | 镜头焦距：133/10 | 光圈：f/2.6 | 快门：3/100s | ISO：1117" },
+  { cover: "content/gallery/IMG_20260110_100843.jpg", title: "晴朗", tag: "广州,城市", time: "2026-01-10", photograph: "相机：vivo X200 Pro mini | 镜头焦距：327/50 | 光圈：f/1.6 | 快门：1187/1000000s | ISO：71" },
+  { cover: "content/gallery/IMG_20260103_151724.jpg", title: "证件照", tag: "花生,猫咪", time: "2026-01-03", photograph: "相机：vivo X200 Pro mini | 镜头焦距：133/10 | 光圈：f/2.6 | 快门：3/100s | ISO：669" },
+  { cover: "content/gallery/IMG_20260104_140025.jpg", title: "高难度", tag: "花生,猫咪", time: "2026-01-03", photograph: "相机：vivo X200 Pro mini | 镜头焦距：133/10 | 光圈：f/2.6 | 快门：1/100s | ISO：210" },
+  { cover: "content/gallery/IMG_20260101_132024.jpg", title: "滑雪", tag: "深圳,滑雪", time: "2026-01-01", photograph: "相机：vivo X200 Pro mini | 镜头焦距：133/10 | 光圈：f/2.6 | 快门：1/50s | ISO：346" },
+  { cover: "content/gallery/IMG_20251222_234451.jpg", title: "证件照", tag: "花生,猫咪", time: "2025-12-22", photograph: "相机：vivo X200 Pro mini | 镜头焦距：133/10 | 光圈：f/2.6 | 快门：3/100s | ISO：4639" },
+  { cover: "content/gallery/IMG_20251218_105318.jpg", title: "科技进校园", tag: "人像", time: "2025-12-18", photograph: "相机：vivo X200 Pro mini | 镜头焦距：133/10 | 光圈：f/2.6 | 快门：1823/1000000s | ISO：72" },
+  { cover: "content/gallery/IMG_20251130_193036.jpg", title: "输液", tag: "花生,猫咪", time: "2025-11-30", photograph: "相机：vivo X200 Pro mini | 镜头焦距：327/50 | 光圈：f/16.0 | 快门：1/100s | ISO：178" },
+  { cover: "content/gallery/IMG_20251130_105341.jpg", title: "第一天", tag: "花生,猫咪", time: "2025-11-30", photograph: "相机：vivo X200 Pro mini | 镜头焦距：133/10 | 光圈：f/2.6 | 快门：3/100s | ISO：3075" },
+  { cover: "content/gallery/IMG_20251129_213244.jpg", title: "第一天", tag: "花生,猫咪", time: "2025-11-29", photograph: "相机：vivo X200 Pro mini | 镜头焦距：327/50 | 光圈：f/1.6 | 快门：869/125000s | ISO：4058" },
+  { cover: "content/gallery/IMG_20251002_210539.jpg", title: "万青", tag: "音乐节", time: "2025-10-02", photograph: "相机：vivo X200 Pro mini | 镜头焦距：133/10 | 光圈：f/2.6 | 快门：1/25s | ISO：537" },
+  { cover: "content/gallery/IMG_20251002_193912.jpg", title: "易燃易爆炸", tag: "音乐节", time: "2025-10-02", photograph: "相机：vivo X200 Pro mini | 镜头焦距：133/10 | 光圈：f/2.6 | 快门：5412327/1000000000s | ISO：72" },
+  { cover: "content/gallery/IMG_20250822_162637.jpg", title: "黄埔", tag: "广州", time: "2025-08-22", photograph: "相机：vivo X200 Pro mini | 镜头焦距：133/10 | 光圈：f/2.6 | 快门：1/50s | ISO：143" },
+  { cover: "content/gallery/IMG_20250807_185725.jpg", title: "梵高", tag: "上海", time: "2025-08-07", photograph: "相机：vivo X200 Pro mini | 镜头焦距：327/50 | 光圈：f/1.6 | 快门：1/100s | ISO：285" },
+  { cover: "content/gallery/IMG_20250204_095744.jpg", title: "滑雪", tag: "滑雪", time: "2025-02-04", photograph: "相机：vivo X200 Pro mini | 镜头焦距：133/10 | 光圈：f/2.6 | 快门：8869/1000000s | ISO：50" },
+  { cover: "content/gallery/IMG_20250204_095717.jpg", title: "雪山", tag: "滑雪,山", time: "2025-02-04", photograph: "相机：vivo X200 Pro mini | 镜头焦距：327/50 | 光圈：f/1.6 | 快门：311/250000s | ISO：71" },
+  { cover: "content/gallery/IMG_20250204_095338.jpg", title: "雪山", tag: "滑雪,山", time: "2025-02-04", photograph: "相机：vivo X200 Pro mini | 镜头焦距：327/50 | 光圈：f/1.6 | 快门：781/1000000s | ISO：71" },
+  { cover: "content/gallery/IMG_20250204_095329.jpg", title: "滑雪", tag: "滑雪", time: "2025-02-04", photograph: "相机：vivo X200 Pro mini | 镜头焦距：327/50 | 光圈：f/1.6 | 快门：243/500000s | ISO：72" },
 ];
 
 
 
+
+// ==============================
+// 按 time 排序：最新时间在前
+// ==============================
+galleryData.sort((a, b) => {
+  return new Date(b.time) - new Date(a.time);
+});
 
 // ==============================
 // 图集渲染与交互（代码不变）
