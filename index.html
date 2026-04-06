@@ -85,9 +85,32 @@
 
   <script src="assets/js/core.js"></script>
   <script>
+    // 🎵 背景音乐控制
     const audio = new Audio('assets/static/bgm.mp3');
     audio.loop = true;
-    document.getElementById('footerMusic').onclick = () => audio.paused ? audio.play() : audio.pause();
+    const footer = document.getElementById('footerMusic');
+
+    // 点击底部文字控制音乐播放/暂停
+    document.getElementById('footerMusic').onclick = () => {
+      if (audio.paused) {
+        audio.play();
+        footer.style.animation = "breath 5s ease-in-out infinite"; // 播放 → 开启动画
+      } else {
+        audio.pause();
+        footer.style.animation = "none"; // 暂停 → 停止动画
+        footer.style.opacity = "0.6";
+      }
+    };
+
+    // 🔥 超温柔呼吸动画
+    const style = document.createElement('style');
+      style.innerHTML = `
+@keyframes breath {
+  0%,100% { opacity:0.2; }
+  50% { opacity:0.85; }
+}
+`;
+    document.head.appendChild(style);
   </script>
 </body>
 
