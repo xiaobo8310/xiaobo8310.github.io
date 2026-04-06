@@ -1,0 +1,206 @@
+==============================
+每日新闻自动生成提示词（内置在JS中）
+发送此文件给ai → 自动生成【当天最新】newsData
+==============================
+生成规则：
+1. 日期统一使用：提问当天日期（YYYY-MM-DD）
+2. 共10条，结构严格如下：
+   - 第1条：当日最重要时政新闻
+   - 第2条：当日最重要财经新闻
+   - 第3~6条：AI相关科技新闻（共4条）
+   - 第7~8条：数码科技相关新闻（共2条）
+   - 第9~10条：综合前沿科技新闻（共2条）
+3. 字段要求：
+   - title：新闻原标题
+   - cover：固定为 assets/static/新闻封面.jpg
+   - source：真实权威媒体
+   - newsVia：真实可访问原文链接，标题一一对应
+   - time：提问当天日期
+   - content：≥300字，完整客观正式,，末尾写一个“（本内容由©AI自动生成）”,content里不要有类似这种[[9]]东西”
+4. 别忘了标点符号之类的，特别是代码里的“；”、“；”、“}”之类的
+==============================
+const newsData = [
+  // 1. 时政
+  {
+    title: "",
+    cover: "assets/static/新闻封面.jpg",
+    source: "",
+    newsVia: "",
+    time: "",
+    content: ""
+  },
+  // 2. 财经
+  {
+    title: "",
+    cover: "assets/static/新闻封面.jpg",
+    source: "",
+    newsVia: "",
+    time: "",
+    content: ""
+  },
+  // 3. AI
+  {
+    title: "",
+    cover: "assets/static/新闻封面.jpg",
+    source: "",
+    newsVia: "",
+    time: "",
+    content: ""
+  },
+  // 4. AI
+  {
+    title: "",
+    cover: "assets/static/新闻封面.jpg",
+    source: "",
+    newsVia: "",
+    time: "",
+    content: ""
+  },
+  // 5. AI
+  {
+    title: "",
+    cover: "assets/static/新闻封面.jpg",
+    source: "",
+    newsVia: "",
+    time: "",
+    content: ""
+  },
+  // 6. AI
+  {
+    title: "",
+    cover: "assets/static/新闻封面.jpg",
+    source: "",
+    newsVia: "",
+    time: "",
+    content: ""
+  },
+  // 7. 数码
+  {
+    title: "",
+    cover: "assets/static/新闻封面.jpg",
+    source: "",
+    newsVia: "",
+    time: "",
+    content: ""
+  },
+  // 8. 数码
+  {
+    title: "",
+    cover: "assets/static/新闻封面.jpg",
+    source: "",
+    newsVia: "",
+    time: "",
+    content: ""
+  },
+  // 9. 综合科技
+  {
+    title: "",
+    cover: "assets/static/新闻封面.jpg",
+    source: "",
+    newsVia: "",
+    time: "",
+    content: ""
+  },
+  // 10. 综合科技
+  {
+    title: "",
+    cover: "assets/static/新闻封面.jpg",
+    source: "",
+    newsVia: "",
+    time: "",
+    content: ""
+  }
+];
+==============================
+const newsData = [
+  // 1. 时政
+  {
+    title: "",
+    cover: "assets/static/新闻封面.jpg",
+    source: "",
+    newsVia: "",
+    time: "",
+    content: ""
+  },
+  // 2. 财经
+  {
+    title: "",
+    cover: "assets/static/新闻封面.jpg",
+    source: "",
+    newsVia: "",
+    time: "",
+    content: ""
+  },
+  // 3. AI
+  {
+    title: "",
+    cover: "assets/static/新闻封面.jpg",
+    source: "",
+    newsVia: "",
+    time: "",
+    content: ""
+  },
+  // 4. AI
+  {
+    title: "",
+    cover: "assets/static/新闻封面.jpg",
+    source: "",
+    newsVia: "",
+    time: "",
+    content: ""
+  },
+  // 5. AI
+  {
+    title: "",
+    cover: "assets/static/新闻封面.jpg",
+    source: "",
+    newsVia: "",
+    time: "",
+    content: ""
+  },
+  // 6. AI
+  {
+    title: "",
+    cover: "assets/static/新闻封面.jpg",
+    source: "",
+    newsVia: "",
+    time: "",
+    content: ""
+  },
+  // 7. 数码
+  {
+    title: "",
+    cover: "assets/static/新闻封面.jpg",
+    source: "",
+    newsVia: "",
+    time: "",
+    content: ""
+  },
+  // 8. 数码
+  {
+    title: "",
+    cover: "assets/static/新闻封面.jpg",
+    source: "",
+    newsVia: "",
+    time: "",
+    content: ""
+  },
+  // 9. 综合科技
+  {
+    title: "",
+    cover: "assets/static/新闻封面.jpg",
+    source: "",
+    newsVia: "",
+    time: "",
+    content: ""
+  },
+  // 10. 综合科技
+  {
+    title: "",
+    cover: "assets/static/新闻封面.jpg",
+    source: "",
+    newsVia: "",
+    time: "",
+    content: ""
+  }
+];

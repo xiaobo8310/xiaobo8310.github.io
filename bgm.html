@@ -1,0 +1,12 @@
+<audio id="bgm" loop src="assets/static/bgm.mp3"></audio>
+<script>
+  let audio = document.getElementById('bgm');
+  let playing = false;
+
+  window.addEventListener('message', (e) => {
+    if (e.data === 'toggle') {
+      playing ? audio.pause() : audio.play();
+      playing = !playing;
+    }
+  });
+</script>
